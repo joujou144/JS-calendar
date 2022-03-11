@@ -1,6 +1,6 @@
 # JS-calendar
 
-Work in progress - prev/next buttons, overall styling is still incomplete
+Work in progress - prev/next buttons
 
 ## Demo
 
