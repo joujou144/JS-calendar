@@ -1,5 +1,7 @@
 # JS-calendar
 
+updates - mobile responsive
+
 Work in progress - prev/next buttons
 
 ## Demo
