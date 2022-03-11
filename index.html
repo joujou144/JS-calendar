@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="dycalendar.css">
   <link rel="stylesheet" href="styles.css">
   <title>Calendar Widget</title>
 </head>
@@ -22,14 +21,14 @@
 
       <div class="calendar-header">        
       
-        <pre class="prev"><</pre>
+        <pre class="prev" id="prev"><</pre>
         
         <span class="month-year-display">
           <span class="month" id="month"></span>  
           <span class="year" id="year"></span>  
         </span>       
      
-        <pre class="next">></pre>            
+        <pre class="next" id="next">></pre>            
 
       </div>
 
@@ -51,8 +50,8 @@
           <div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
           <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div>
           <div>28</div><div>29</div><div>30</div><div>31</div><div class="next-month-days">1</div><div class="next-month-days">2</div><div class="next-month-days">3</div>
-          <div class="next-month-days">4</div><div class="next-month-days">5</div><div class="next-month-days">6</div><div class="next-month-days">7</div><div class="next-month-days">8</div><div class="next-month-days">9</div><div class="next-month-days">10</div> -->
-                     
+          <div class="next-month-days">4</div><div class="next-month-days">5</div><div class="next-month-days">6</div><div class="next-month-days">7</div><div class="next-month-days">8</div><div class="next-month-days">9</div><div class="next-month-days">10</div>
+                      -->
         </div>
 
       </div>
@@ -60,7 +59,7 @@
       <div class="calendar-footer">
         <div class="toggle">
           <span>Light Mode</span>
-          <div class="light-mode-switch">
+          <div class="light-mode-switch" onclick="lightMode()">
             <div class="switch-indent"></div>
           </div>
           
