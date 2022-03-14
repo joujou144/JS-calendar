@@ -287,17 +287,12 @@ main::before {
 
   main::before {
     height: 480px;
-    width: 335px;
+    width: 340px;
     background-size: 340px 480px;
     border-radius: 8px;
     background-position: center center;
     -webkit-filter: blur(3px);       filter: blur(3px);
-  }
-  
-  /* .calendar-date-display,
-  .month-year-display {
-    font-weight: bold;
-  } */
+  }  
 
   .calendar {
     backdrop-filter: none;
@@ -308,17 +303,7 @@ main::before {
     height: 40px;
     width: 40px;
     font-size: 12pt;
-  }
-
-  .calendar-days div {   
-    border: 2px solid transparent;  
-    border-radius: 6px;
-  }
-
-  .calendar-days div:not(.today) {
-    background-color: rgba(202, 112, 112, 0.2);
-    text-shadow: 1px 2px rgb(196, 57, 133);
-  }
+  } 
 
   .prev-month-days,
   .next-month-days {
