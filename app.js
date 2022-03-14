@@ -35,10 +35,40 @@ stars()
 // months array
 const monthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'December']
 
-const calendarDays = document.querySelector('.calendar-days')
-
 // current full date (eg Thursday 10 March 2022 with time 10:35 GMT)
 const currDate = new Date()
+
+// current month -- index rank eg Jan is 0, March is 2
+currMonth = currDate.getMonth() 
+
+// current year
+currYear = currDate.getFullYear()
+ // display current month and year on calendar
+
+
+
+//----------CHANGING PREV/NEXT MONTH/YEAR -------
+
+function prevMonth() {
+  currMonth--
+  if(currMonth === -1) {
+    currMonth = 11
+    currYear--
+  }
+}
+
+function nextMonth() {
+  currMonth++ 
+  if (currMonth === 12) {
+    currMonth = 0
+    currYear++
+  }
+}
+
+
+const calendarDays = document.querySelector('.calendar-days')
+
+
 
 // get current full date string (eg Thursday 10 March 2022)
 const fullDateString = currDate.toLocaleDateString( 'en-GB', {
@@ -55,11 +85,9 @@ function generateCalendar() {
  
   currDate.setDate(1)
 
-  // current month -- index rank eg Jan is 0, March is 2
-  currMonth = currDate.getMonth() 
+  document.querySelector('#month').innerHTML = monthArr[currMonth]
 
-  // current year
-  currYear = currDate.getFullYear()
+  document.querySelector('#year').innerHTML = currYear
 
   // get first day of the month (eg Tuesday 1 March 2022)
   const firstDay = new Date(currYear, currMonth, 1).getDate()
@@ -70,9 +98,6 @@ function generateCalendar() {
   const daysInPrevMonth = new Date(currYear, currMonth, 0).getDate()
   
 
-  // current date (eg the 10th)
-  const day = currDate.getDate() // 
-
   // if use getDay() will return the day of the week eg. Thu March 10th is 4th day 
   const firstDayIndex = currDate.getDay() - 1
 
@@ -80,11 +105,6 @@ function generateCalendar() {
 
   const nextMonthDays = 7 - lastDayIndex - 1
  
-
-  // display current month and year on calendar
-  document.querySelector('#month').innerHTML = monthArr[currMonth]
-  document.querySelector('#year').innerHTML = currYear
-
 
   let days = ''
 
@@ -114,7 +134,19 @@ function generateCalendar() {
 }
 
 generateCalendar()
-//----------CHANGING PREV/NEXT MONTH -------
+
+
+
+
+document.querySelector('#prev').addEventListener('click', () => {
+  currDate.setMonth(currMonth -1)
+  generateCalendar()
+})
+
+document.querySelector('#next').addEventListener('click', () => {
+  currDate.setMonth(currMonth + 1)
+  generateCalendar()
+})
 
 
 
