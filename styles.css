@@ -164,7 +164,7 @@ main::before {
   justify-content: space-between;
   align-items: center;
   font-size: 18pt;
-  margin: 0 12px;  
+  margin: 0 5px;  
   font-variant: all-small-caps;
   height: 40px;
 }
