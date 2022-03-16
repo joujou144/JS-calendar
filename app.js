@@ -27,68 +27,40 @@ function stars() {
  
 }
 
-stars()
+// stars()
+
 
 // -------------CALENDAR ---------------
 
 
-// months array
 const monthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'December']
 
-// current full date (eg Thursday 10 March 2022 with time 10:35 GMT)
 const currDate = new Date()
 
-// current month -- index rank eg Jan is 0, March is 2
 currMonth = currDate.getMonth() 
 
-// current year
 currYear = currDate.getFullYear()
- // display current month and year on calendar
-
-
-
-//----------CHANGING PREV/NEXT MONTH/YEAR -------
-
-function prevMonth() {
-  currMonth--
-  if(currMonth === -1) {
-    currMonth = 11
-    currYear--
-  }
-}
-
-function nextMonth() {
-  currMonth++ 
-  if (currMonth === 12) {
-    currMonth = 0
-    currYear++
-  }
-}
-
-
+const gridsize = 42
 const calendarDays = document.querySelector('.calendar-days')
 
-
-
-// get current full date string (eg Thursday 10 March 2022)
 const fullDateString = currDate.toLocaleDateString( 'en-GB', {
   weekday: 'long',
   day: 'numeric',
   month: 'long',
 })
 
-// display full current date string on calendar
-document.querySelector('#full-date-display').innerHTML = fullDateString
-
 
 function generateCalendar() {
- 
-  currDate.setDate(1)
 
   document.querySelector('#month').innerHTML = monthArr[currMonth]
 
   document.querySelector('#year').innerHTML = currYear
 
+  document.querySelector('#full-date-display').innerHTML = fullDateString
+  
+  currDate.setDate(1)
+
+    
   // get first day of the month (eg Tuesday 1 March 2022)
   const firstDay = new Date(currYear, currMonth, 1).getDate()
 
@@ -96,16 +68,14 @@ function generateCalendar() {
   const daysInCurrentMonth = new Date(currYear, currMonth + 1, 0).getDate()
 
   const daysInPrevMonth = new Date(currYear, currMonth, 0).getDate()
-  
 
   // if use getDay() will return the day of the week eg. Thu March 10th is 4th day 
   const firstDayIndex = currDate.getDay() - 1
 
   const lastDayIndex = new Date(currYear, currMonth + 1, 0).getDay() - 1
 
-  const nextMonthDays = 7 - lastDayIndex - 1
+  const nextMonthDays = 6 - lastDayIndex
  
-
   let days = ''
 
   // render the prev month days 
@@ -113,7 +83,6 @@ function generateCalendar() {
     days += `<div class="prev-month-days">${daysInPrevMonth -x + 1}</div>`
     calendarDays.innerHTML = days  
   }
-
 
   // render the days in current month
   for (let i = 1; i <= daysInCurrentMonth; i++) {
@@ -135,19 +104,35 @@ function generateCalendar() {
 
 generateCalendar()
 
+//----------CHANGING PREV/NEXT MONTH/YEAR -------
 
+function prevMonth() {
+   if(currMonth === -1) {
+    currMonth = 11
+    currYear--
+   }
+}
 
+function nextMonth() {
+  if (currMonth === 12) {
+    currMonth = 0
+    currYear++
+  }
+}
 
-document.querySelector('#prev').addEventListener('click', () => {
-  currDate.setMonth(currMonth -1)
-  generateCalendar()
+document.addEventListener('click', function(e) {
+  if (e.target.id === 'prev') {
+    currDate.setMonth(currMonth--)
+    prevMonth()
+    generateCalendar()
+  }
+
+  if (e.target.id === 'next') {
+    currDate.setMonth(currMonth++)
+    nextMonth()
+    generateCalendar()
+  }
 })
-
-document.querySelector('#next').addEventListener('click', () => {
-  currDate.setMonth(currMonth + 1)
-  generateCalendar()
-})
-
 
 
 // ---------LIGHT MODE SWITCH-----------
