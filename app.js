@@ -76,15 +76,14 @@ function generateCalendar() {
 
    const lastDayIndex = new Date(currYear, currMonth + 1, 0).getDay() - 1
 
-   const nextMonthDays = 7 - lastDayIndex - 1
+   const nextMonthDays = 6 - lastDayIndex
 
    let days = ''
 
    // render the prev month days 
    for (let x = firstDayIndex; x > 0; x--) {
       days += `<div class="prev-month-days">${daysInPrevMonth -x + 1}</div>`
-      calendarDays.innerHTML = days
-   }
+    }
 
    // render the days in current month
    for (let i = 1; i <= daysInCurrentMonth; i++) {
@@ -93,15 +92,22 @@ function generateCalendar() {
       } else {
          days += `<div>${i}</div>`
       }
-      calendarDays.innerHTML = days
    }
 
-   // render the days in next month 
-   for (let n = 1; n <= nextMonthDays; n++) {
-      days += `<div class="next-month-days">${n}</div>`
-      calendarDays.innerHTML = days
-   }
-
+ 
+  if(nextMonthDays >= 1) {
+    for (let j = 1; j <= nextMonthDays; j++){
+      days += `<div class="next-month-days">${j}</div>`;
+   
+    }
+  } else {
+    for (let k = 0; k <= nextMonthDays; k++){
+      days += `<div class="invisible"></div>`;
+  
+    }
+  }
+    
+   calendarDays.innerHTML = days
 }
 
 generateCalendar()
@@ -109,13 +115,15 @@ generateCalendar()
 //----------CHANGING PREV/NEXT MONTH/YEAR -------
 
 function prevMonth() {
-   if (currMonth === -1) {
+  currMonth--
+   if (currMonth < 0 ) {
       currMonth = 11
       currYear--
    }
 }
 
 function nextMonth() {
+  currMonth++
    if (currMonth === 12) {
       currMonth = 0
       currYear++
@@ -124,13 +132,13 @@ function nextMonth() {
 
 document.addEventListener('click', function(e) {
    if (e.target.id === 'prev') {
-      currDate.setMonth(currMonth--)
+      currDate.setMonth(currMonth-1)
       prevMonth()
       generateCalendar()
    }
 
    if (e.target.id === 'next') {
-      currDate.setMonth(currMonth++)
+      currDate.setMonth(currMonth+1)
       nextMonth()
       generateCalendar()
    }
