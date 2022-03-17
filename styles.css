@@ -6,12 +6,14 @@
   --dark-toggle: rgb(7, 3, 44);
   --dark-toggle-bd: rgb(59, 57, 75);
   --dark-text: white;
+  --dark-text-mobile: var(--dark-text);
   --dark-hover: rgba(0,0,0,0.3);
   --dark-hover-text: grey;
   --dark-hover-border: white;
-  --dark-currbg: white;
+  --dark-currbg: rgb(206, 206, 206);
   --dark-currtxt: rgb(6, 4, 20);
   --dark-border-btm: white;
+  --dark-skin-mobile:rgba(117, 100, 106, 0.205);
 
   --dark-box-shadow: 2px 2px 2px rgba(37, 23, 99, 0.377), 2px 2px 2px rgb(94, 74, 150), 2px 2px 2px rgb(10, 5, 56);
 
@@ -20,12 +22,14 @@
   --light-toggle: rgb(228, 210, 210);
   --light-toggle-bd: rgb(104, 97, 97);
   --light-text: rgb(7, 3, 44);
+  --light-text-mobile: rgb(226, 21, 21);
   --light-hover: rgba(39, 36, 36, 0.4);
   --light-hover-text: rgb(228, 210, 210);
   --light-hover-border: rgb(228, 210, 210);
   --light-currbg: rgb(6, 4, 20);
   --light-currtxt: rgb(228, 210, 210);
   --light-border-btm: rgb(7, 3, 44);
+  --light-skin-mobile: rgba(117, 100, 106, 0.205);
 
   --light-box-shadow: 2px 2px 2px rgb(155, 145, 145), 2px 2px 2px rgb(155, 145, 145), 2px 2px 2px rgb(155, 145, 145);
 }
@@ -34,6 +38,7 @@
   --bg-img: url(./IMG-7815.jpg);
   --bg-skin: var(--dark-skin);
   --txt-color: var(--dark-text);
+  --txt-color-mobile: var(--dark-text-mobile);
   --bg-switch: var(--dark-switch);
   --bg-toggle: var(--dark-toggle);
   --bg-hover: var(--dark-hover);
@@ -44,12 +49,14 @@
   --cal-box-shadow: var(--dark-box-shadow);
   --bd-btm: var(--dark-border-btm);
   --toggle-bd: var(--dark-toggle-bd);
+  --skin-mobile: var(--dark-skin-mobile);
 }
 
 .light {
   --bg-img: url(./wavy-kiss-prints.jpg);
   --bg-skin: var(--light-skin);
   --txt-color: var(--light-text);
+  --txt-color-mobile: var(--light-text-mobile);
   --bg-switch: var(--light-switch);
   --bg-toggle: var(--light-toggle);
   --bg-hover: var(--light-hover);
@@ -60,6 +67,7 @@
   --cal-box-shadow: var(--light-box-shadow);
   --bd-btm: var(--light-border-btm);
   --toggle-bd: var(--light-toggle-bd);
+  --skin-mobile: var(--light-skin-mobile);
 }
 
 * {
@@ -72,9 +80,9 @@
 
 html, body {
   letter-spacing: 0.02em;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(165deg, rgb(6, 3, 34), #111, rgb(6, 4, 20));
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 
@@ -95,11 +103,11 @@ section i {
   }
 
   10% {
-    opacity: 1;
+    opacity: 0.7;
   }
 
   90% {
-    opacity: 1;
+    opacity: 0.5;
   }
 
   100% {
@@ -125,7 +133,6 @@ main::before {
   background-position: bottom center;
   position: absolute;
   box-shadow: 2px 5px 8px rgb(116, 111, 111), 2px 5px 8px rgb(156, 144, 144), 2px 5px 8px rgb(161, 156, 156);
-
 }
 
 .box {
@@ -157,6 +164,7 @@ main::before {
   text-align: center;
   border-bottom: 2px solid var(--bd-btm);
   font-variant: all-small-caps; 
+  color: var(--txt-color-mobile);
 }
 
 .calendar-header {
@@ -217,7 +225,6 @@ main::before {
   place-items: center;
   grid-template-columns: repeat(7, 1fr);   
   gap: 2px;
-  font-family: 'Oswald', sans-serif;
 }
 
 .calendar-days div {
@@ -245,6 +252,11 @@ main::before {
   background-color: var(--curr-datebg);
 }
 
+.invisible{
+  opacity: 0;
+  cursor: default;
+}
+
 .calendar-footer {
   padding: 10px 10px 0;
   display: flex;
@@ -262,6 +274,8 @@ main::before {
 
 .light-mode-switch {
   position: relative;
+  -webkit-appearance: none;
+  appearance: none;
   width: 40px;
   height: 22px;
   border-radius: 14px;
@@ -270,7 +284,8 @@ main::before {
   cursor: pointer;
 }
 
-.switch-indent {
+.light-mode-switch::before {
+  content: '';
   background-color: var(--bg-toggle);
   border-radius: 50%;
   width: 18px;
@@ -279,7 +294,7 @@ main::before {
   transition: left 0.2s ease-in-out;
 }
 
-.light .light-mode-switch .switch-indent {
+.light .light-mode-switch:checked::before {
   left: calc(1px + 45%);
 }
 
@@ -298,17 +313,19 @@ main::before {
   .calendar {
     backdrop-filter: none;
   } 
+
   
   .calendar-weekdays div,
   .calendar-days div {
     height: 40px;
     width: 40px;
     font-size: 12pt;
-  } 
+    border-radius: 6px;
+  }
 
-  .prev-month-days,
-  .next-month-days {
-    font-weight: normal;
+  .calendar-days div:not(.today) {
+    background-color: var(--skin-mobile);
+    color: var(--txt-color-mobile);
   }
 
   .calendar-footer {
