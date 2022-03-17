@@ -208,7 +208,6 @@ main::before {
   gap: 2px;
   font-size: 13pt;
   margin-bottom: 2px;
-  font-family: 'Oswald', sans-serif;
 }
 
 .calendar-weekdays div {
@@ -270,6 +269,7 @@ main::before {
 
 .toggle span {
   margin-right: 10px;
+  text-transform: capitalize;
 }
 
 .light-mode-switch {
