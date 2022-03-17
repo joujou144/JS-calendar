@@ -13,3 +13,8 @@ solo project using vanilla JS and pure CSS. No tutorials or libraries
 ## Demo
 
 https://joujou144.github.io/JS-calendar/
+
+## Image background credits 
+
+- dark bg by @instaphazed [https://www.instagram.com/instaphazed/]
+- light bg by @muhammedsalah_[https://www.instagram.com/muhammedsalah_/]
