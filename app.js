@@ -76,7 +76,7 @@ function generateCalendar() {
 
    const lastDayIndex = new Date(currYear, currMonth + 1, 0).getDay() - 1
 
-   const nextMonthDays = 6 - lastDayIndex
+   const nextMonthDays = 7 - lastDayIndex - 1
 
    let days = ''
 
