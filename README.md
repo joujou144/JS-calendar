@@ -1,8 +1,14 @@
 # JS-calendar
+solo project using vanilla JS and pure CSS. No tutorials or libraries
 
-updates - mobile responsive
+-  mobile responsive
+-  working previous/next months arrow buttons
+-  light/dark mode switches
 
-Work in progress - prev/next buttons
+## Work in Progress
+
+- Window throttling and debouncing for dynamic twinkling stars background on mobile view currently in progress
+- May and July not rendering proper dates
 
 ## Demo
 
