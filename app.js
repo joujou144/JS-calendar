@@ -54,47 +54,47 @@ const fullDateString = currDate.toLocaleDateString('en-GB', {
 
 function generateCalendar() {
 
-   document.querySelector('#month').innerHTML = monthArr[currMonth]
+  document.querySelector('#month').innerHTML = monthArr[currMonth]
 
-   document.querySelector('#year').innerHTML = currYear
+  document.querySelector('#year').innerHTML = currYear
 
-   document.querySelector('#full-date-display').innerHTML = fullDateString
+  document.querySelector('#full-date-display').innerHTML = fullDateString
 
-   currDate.setDate(1)
+  currDate.setDate(1)
 
 
-   // get first day of the month (eg Tuesday 1 March 2022)
-   const firstDay = new Date(currYear, currMonth, 1).getDate()
+  // get first day of the month (eg Tuesday 1 March 2022)
+  const firstDay = new Date(currYear, currMonth, 1).getDate()
 
-   // get number of days in that particular month (eg. March has 31 days) -- last day is 0
-   const daysInCurrentMonth = new Date(currYear, currMonth + 1, 0).getDate()
+  // get number of days in that particular month (eg. March has 31 days) -- last day is 0
+  const daysInCurrentMonth = new Date(currYear, currMonth + 1, 0).getDate()
 
-   const daysInPrevMonth = new Date(currYear, currMonth, 0).getDate()
+  const daysInPrevMonth = new Date(currYear, currMonth, 0).getDate()
 
-   // if use getDay() will return the day of the week eg. Thu March 10th is 4th day 
-   const firstDayIndex = currDate.getDay() - 1
+  // if use getDay() will return the day of the week eg. Thu March 10th is 4th day 
+  const firstDayIndex = currDate.getDay() - 1
 
-   const lastDayIndex = new Date(currYear, currMonth + 1, 0).getDay() - 1
+  const lastDayIndex = new Date(currYear, currMonth + 1, 0).getDay() - 1
 
-   const nextMonthDays = 6 - lastDayIndex
+  const nextMonthDays = 6 - lastDayIndex
 
-   let days = ''
+  let days = ''
 
-   // render the prev month days 
-   for (let x = firstDayIndex; x > 0; x--) {
-      days += `<div class="prev-month-days">${daysInPrevMonth -x + 1}</div>`
+  // render the prev month days 
+  for (let x = firstDayIndex; x > 0; x--) {
+    days += `<div class="prev-month-days">${daysInPrevMonth -x + 1}</div>`
+  }
+
+  // render the days in current month
+  for (let i = 1; i <= daysInCurrentMonth; i++) {
+    if (i === new Date().getDate() && currMonth === new Date().getMonth()) {
+        days += `<div class="today">${i}</div>`
+    } else {
+        days += `<div>${i}</div>`
     }
+  }
 
-   // render the days in current month
-   for (let i = 1; i <= daysInCurrentMonth; i++) {
-      if (i === new Date().getDate() && currMonth === new Date().getMonth()) {
-         days += `<div class="today">${i}</div>`
-      } else {
-         days += `<div>${i}</div>`
-      }
-   }
-
- 
+  // render next month days 
   if(nextMonthDays >= 1) {
     for (let j = 1; j <= nextMonthDays; j++){
       days += `<div class="next-month-days">${j}</div>`;
